@@ -1,13 +1,12 @@
 const PORT = process.env.PORT || 3000;
 
 const express = require("express");
+require("./services/passport");
+
 const app = express();
-const http = require("http").Server(app);
 
-app.get("/", (req, res) => {
-  res.send({ hi: "There" });
-});
+require("./routes/authRoutes")(app);
 
-http.listen(PORT, function() {
+app.listen(PORT, () => {
   console.log(`Server started on port: ${PORT}`);
 });
